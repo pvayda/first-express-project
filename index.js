@@ -15,7 +15,14 @@ const students = [{name: 'Chuck', id: 1, email:'chuck@gmail.com', age: 12, grade
 
 //GET /students - returns a list of all students
 app.get('/students', (req,res) =>{
-    res.send(students) 
+    if(req.query.search){
+        let filteredStudents = students.filter(each => each.name === req.query.search)
+        res.send(filteredStudents)
+
+    }else {
+        res.send(students) 
+
+    }
 } )
 
 //GET /students/:studentId - returns details of a specific student by student id
